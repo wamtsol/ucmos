@@ -12,7 +12,7 @@ if(isset($_POST["admin_add"])){
 	if(numrows(doquery("select id from admin where email='".slash($email)."'", $dblink))>0)
 		$err.='Email address already exists.<br />';
 	if($err==""){
-		$sql="INSERT INTO admin (admin_type_id, username, name, email, monthly_salary, password) VALUES ('".slash($admin_type_id)."', '".slash($username)."','".slash($name)."','".slash($email)."','".slash($monthly_salary)."','".slash($password)."')";
+		$sql="INSERT INTO admin (admin_type_id, username, name, email, phone_number, password) VALUES ('".slash($admin_type_id)."', '".slash($username)."','".slash($name)."','".slash($email)."','".slash($phone_number)."','".slash($password)."')";
 		doquery($sql,$dblink);
 		unset($_SESSION["admin_manage"]["add"]);
 		header('Location: admin_manage.php?tab=list&msg='.url_encode("Sucessfully Added"));

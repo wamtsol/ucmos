@@ -24,7 +24,7 @@ if(isset($_GET["action"]) && $_GET["action"]!=""){
 		if($bulk_action=="statuson"){
 			$i=0;
 			while($i<count($id)){
-				doquery("update admin set status=1 where id='".$id[$i]."'",$dblink);
+				doquery("update uc set status=1 where id='".$id[$i]."'",$dblink);
 				$i++;
 			}
 			header("Location: uc_manage.php?tab=list&msg=".url_encode("Records Status On."));
@@ -33,7 +33,7 @@ if(isset($_GET["action"]) && $_GET["action"]!=""){
 		if($bulk_action=="statusof"){
 			$i=0;
 			while($i<count($id)){
-				doquery("update admin set status=0 where id='".$id[$i]."'",$dblink);
+				doquery("update uc set status=0 where id='".$id[$i]."'",$dblink);
 				$i++;
 			}
 			header("Location: uc_manage.php?tab=list&msg=".url_encode("Records Status Off."));

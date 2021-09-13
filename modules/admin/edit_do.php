@@ -12,7 +12,7 @@ if(isset($_POST["admin_edit"])){
 	if(numrows(doquery("select id from admin where email='".slash($email)."' and id<>'".$id."'", $dblink))>0)
 		$err.='Email address already exists.<br />';
 	if($err==""){
-		$sql="Update admin set `admin_type_id`='".slash($admin_type_id)."', `username`='".slash($username)."',`name`='".slash($name)."', `email`='".slash($email)."',`monthly_salary`='".slash($monthly_salary)."'".(!empty($password)? ", `password`='".slash($password)."'":"")." where id='".$id."'";
+		$sql="Update admin set `admin_type_id`='".slash($admin_type_id)."', `username`='".slash($username)."',`name`='".slash($name)."', `email`='".slash($email)."',`phone_number`='".slash($phone_number)."'".(!empty($password)? ", `password`='".slash($password)."'":"")." where id='".$id."'";
 		doquery($sql,$dblink);
 		unset($_SESSION["admin_manage"]["edit"]);
 		header('Location: admin_manage.php?tab=list&msg='.url_encode("Sucessfully Updated"));

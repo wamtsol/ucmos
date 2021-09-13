@@ -5,25 +5,25 @@ $extra='';
 $is_search=false;
 if(isset($_GET["q"])){
 	$q=slash($_GET["q"]);
-	$_SESSION["admin_manage"]["q"]=$q;
+	$_SESSION["tehseel_manage"]["q"]=$q;
 }
-if(isset($_SESSION["admin_manage"]["q"]))
-	$q=$_SESSION["admin_manage"]["q"];
+if(isset($_SESSION["tehseel_manage"]["q"]))
+	$q=$_SESSION["tehseel_manage"]["q"];
 else
 	$q="";
 if(!empty($q)){
-	$extra.=" and username like '%".$q."%'";
+	$extra.=" and name like '%".$q."%'";
 	$is_search=true;
 }
 ?>
 <div class="page-header">
-	<h1 class="title">Manage User</h1>
+	<h1 class="title"> Tehseel</h1>
   	<ol class="breadcrumb">
-    	<li class="active">All the User who can use the admin panel</li>
+    	<li class="active">Manage Tehseel</li>
   	</ol>
   	<div class="right">
     	<div class="btn-group" role="group" aria-label="..."> 
-        	<a href="admin_manage.php?tab=add" class="btn btn-light editproject">Add New User</a> <a id="topstats" class="btn btn-light" href="#"><i class="fa fa-search"></i></a> 
+        	<a href="tehseel_manage.php?tab=add" class="btn btn-light editproject">Add New Tehseel</a> <a id="topstats" class="btn btn-light" href="#"><i class="fa fa-search"></i></a>
         </div>
   	</div>
 </div>
@@ -49,18 +49,14 @@ if(!empty($q)){
                 <th class="text-center" width="5%"><div class="checkbox checkbox-primary">
                     <input type="checkbox" id="select_all" value="0" title="Select All Records">
                     <label for="select_all"></label></div></th>
-                <th>User Type</th>
-                <th>User Name</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th class="text-center">Status</th>
-                <th>Actions</th>
+                <th width="60%">Name</th>
+                <th width="10%" class="text-center">Status</th>
+                <th width="5%">Actions</th>
             </tr>
     	</thead>
     	<tbody>
 			<?php 
-            $sql="select * from admin where 1 $extra";
+            $sql="select * from tehseel where 1 $extra";
             $rs=show_page($rows, $pageNum, $sql);
             if(numrows($rs)>0){
                 $sn=1;
@@ -73,12 +69,8 @@ if(!empty($q)){
                             <input type="checkbox" name="id[]" id="<?php echo "rec_".$sn?>"  value="<?php echo $r["id"]?>" title="Select Record" />
                             <label for="<?php echo "rec_".$sn?>"></label></div>
                         </td>
-                        <td><?php if($r["admin_type_id"]==0) echo "Default"; else echo get_field($r["admin_type_id"], "admin_type","title");?></td>
-                        <td><?php echo unslash($r["username"]); ?></td>
                         <td><?php echo unslash($r["name"]); ?></td>
-                        <td><?php echo unslash($r["email"]); ?></td>
-                        <td><?php echo unslash($r["phone_number"]); ?></td>
-                        <td class="text-center"><a href="admin_manage.php?id=<?php echo $r['id'];?>&tab=status&s=<?php echo ($r["status"]==0)?1:0;?>">
+                        <td class="text-center"><a href="tehseel_manage.php?id=<?php echo $r['id'];?>&tab=status&s=<?php echo ($r["status"]==0)?1:0;?>">
                             <?php
                             if($r["status"]==0){
                                 ?>
@@ -93,8 +85,8 @@ if(!empty($q)){
                             ?>
                         </a></td>
                         <td>
-                            <a href="admin_manage.php?tab=edit&id=<?php echo $r['id'];?>"><img title="Edit Record" alt="Edit" src="images/edit.png"></a>&nbsp;&nbsp;
-                            <a onclick="return confirm('Are you sure you want to delete')" href="admin_manage.php?id=<?php echo $r['id'];?>&amp;tab=delete"><img title="Delete Record" alt="Delete" src="images/delete.png"></a>
+                            <a href="tehseel_manage.php?tab=edit&id=<?php echo $r['id'];?>"><img title="Edit Record" alt="Edit" src="images/edit.png"></a>&nbsp;&nbsp;
+                            <a onclick="return confirm('Are you sure you want to delete')" href="tehseel_manage.php?id=<?php echo $r['id'];?>&amp;tab=delete"><img title="Delete Record" alt="Delete" src="images/delete.png"></a>
                         </td>
                     </tr>
                     <?php 
@@ -102,7 +94,7 @@ if(!empty($q)){
                 }
                 ?>
                 <tr>
-                    <td colspan="5" class="actions">
+                    <td colspan="3" class="actions">
                         <select name="bulk_action" id="bulk_action" title="Choose Action">
                             <option value="null">Bulk Action</option>
                             <option value="delete">Delete</option>

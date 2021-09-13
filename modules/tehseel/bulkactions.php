@@ -15,33 +15,33 @@ if(isset($_GET["action"]) && $_GET["action"]!=""){
 		if($bulk_action=="delete"){
 			$i=0;
 			while($i<count($id)){
-				doquery("delete from uc where id='".$id[$i]."'",$dblink);
+				doquery("delete from tehseel where id='".$id[$i]."'",$dblink);
 				$i++;
 			}
-			header("Location: uc_manage.php?tab=list&msg=".url_encode("Records Deleted."));
+			header("Location: tehseel_manage.php?tab=list&msg=".url_encode("Records Deleted."));
 			die;
 		}
 		if($bulk_action=="statuson"){
 			$i=0;
 			while($i<count($id)){
-				doquery("update admin set status=1 where id='".$id[$i]."'",$dblink);
+				doquery("update tehseel set status=1 where id='".$id[$i]."'",$dblink);
 				$i++;
 			}
-			header("Location: uc_manage.php?tab=list&msg=".url_encode("Records Status On."));
+			header("Location: tehseel_manage.php?tab=list&msg=".url_encode("Records Status On."));
 			die;
 		}
 		if($bulk_action=="statusof"){
 			$i=0;
 			while($i<count($id)){
-				doquery("update admin set status=0 where id='".$id[$i]."'",$dblink);
+				doquery("update tehseel set status=0 where id='".$id[$i]."'",$dblink);
 				$i++;
 			}
-			header("Location: uc_manage.php?tab=list&msg=".url_encode("Records Status Off."));
+			header("Location: tehseel_manage.php?tab=list&msg=".url_encode("Records Status Off."));
 			die;
 		}
 	}
 	else{
-		header("Location: uc_manage.php?tab=list&err=".url_encode($err));
+		header("Location: tehseel_manage.php?tab=list&err=".url_encode($err));
 		die;					
 	}
 }
