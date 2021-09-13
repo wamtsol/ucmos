@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 13, 2021 at 05:39 PM
+-- Generation Time: Sep 13, 2021 at 06:38 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.19
 
@@ -44,8 +44,61 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `admin_type_id`, `username`, `email`, `name`, `phone_number`, `password`, `status`, `ts`) VALUES
-(1, 1, 'admin', 'vickyali2@hotmail.com', 'Admin', '', 'admin', 0, '2021-09-13 15:33:39'),
-(28, 1, 'hassanshaikh', 'hassanshaikh333@gmail.com', 'hassan', '090078601999', '12345678', 1, '2021-09-13 14:52:14');
+(1, 1, 'admin', 'vickyali2@hotmail.com', 'Admin', '', 'admin', 1, '2021-09-13 17:45:20'),
+(29, 3, 'waseem', 'waseem@waseem.com', 'Dr. Waseem', '0308-3349151', 'waseem', 1, '2021-09-13 17:51:13'),
+(30, 3, 'mashad burt', 'mashadburt@mashadburt.com', 'Dr. Mashad Burt', '0300-3049962', 'mashadburt', 1, '2021-09-13 17:51:22'),
+(31, 3, 'fayyaz', 'fayyaz@fayyaz.com', 'Dr. Fayyaz Umar', '0341-2048433', 'fayyaz', 1, '2021-09-13 17:50:56'),
+(32, 3, 'nadeem', 'nadeem@nadeem.com', 'Dr. Nadeem', '0345-3559925', 'nadeem', 1, '2021-09-13 17:52:11'),
+(33, 3, 'masood', 'masood@masood.com', 'Dr. Masood Qazi', '0333-2709803', 'masood', 1, '2021-09-13 17:52:57'),
+(34, 3, 'wahid', 'wahid@wahid.com', 'Dr. Wahid Ali', '0343-3669335', 'wahid', 1, '2021-09-13 17:53:35'),
+(35, 3, 'waqar', 'waqar@waqar.com', 'Dr. Waqar Solangi', '0300-4199011', 'waqar', 1, '2021-09-13 17:55:19'),
+(36, 3, 'yousif', 'yousif@yousif.com', 'Dr. Yousif Magsi', '0334-2611721', 'yousif', 1, '2021-09-13 17:56:18'),
+(37, 3, 'shahid', 'shahid@shahid.com', 'Dr. Shahid', '0313-3991166', 'shahid', 1, '2021-09-13 17:57:17'),
+(38, 3, 'faisal', 'faisal@faisal.com', 'Dr. Faisal', '0345-3572112', 'faisal', 1, '2021-09-13 18:00:18'),
+(39, 3, 'ameen', 'ameen@ameen.com', 'Dr, Ameen', '0310-3209028', 'ameen', 1, '2021-09-13 18:01:02'),
+(40, 3, 'rizwan', 'rizwan@rizwan.com', 'Dr. Rizwan', '0334-2824897', 'rizwan', 1, '2021-09-13 18:01:59'),
+(41, 3, 'basit', 'basit@basit.com', 'Dr. A. Basit', '0336-2256912', 'basit', 1, '2021-09-13 18:02:37'),
+(42, 3, 'riaz', 'riaz@riaz.com', 'Dr. Riaz', '0313-4938137', 'riaz', 1, '2021-09-13 18:03:17'),
+(43, 3, 'waseemnew', 'waseemnew@waseem.com', 'Dr. Waseem', '0334-3176941', 'waseemnew', 1, '2021-09-13 18:05:03'),
+(44, 3, 'faisalnew', 'faisalnew@faisal.com', 'Dr. Faisal Bilal', '0331-2395605', 'faisalnew', 1, '2021-09-13 18:05:57'),
+(45, 3, 'sikandar', 'sikandar@sikandar.com', 'Dr. Sikandar', '0333-2779010', 'sikandar', 1, '2021-09-13 18:06:40'),
+(46, 3, 'aliraza', 'aliraza@aliraza.com', 'Dr, Ali Raza Shah', '0334-3623032', 'aliraza', 1, '2021-09-13 18:07:23'),
+(47, 3, 'ahmed', 'ahmed@ahmed.com', 'Dr. Ahmed Faraz', '0336-2867869', 'ahmed', 1, '2021-09-13 18:08:09'),
+(48, 3, 'tahir', 'tahir@tahir.com', 'Dr. Tahir Qureshi', '0345-3574090', 'tahir', 1, '2021-09-13 18:08:43'),
+(49, 3, 'zahid', 'zahid@zahid.com', 'Dr. M. Zahid', '0300-3030641', 'zahid', 1, '2021-09-13 18:09:19'),
+(50, 3, 'azfar', 'azfar@azfar.com', 'Dr. Azfar Sikandari', '0345-3531361', 'azfar', 1, '2021-09-13 18:10:00'),
+(51, 3, 'amjad', 'amjad@amjad.com', 'Dr. Amjad', '0333-2609954', 'amjad', 1, '2021-09-13 18:10:52'),
+(52, 3, 'khan', 'khan@khan.com', 'Dr. Khan Muhammad', '0333-2601661', 'khan', 1, '2021-09-13 18:11:34'),
+(53, 3, 'danish', 'danish@danish.com', 'Dr. Danish ', '0301-3507755', 'danish', 1, '2021-09-13 18:12:05'),
+(54, 3, 'amir', 'amir@amir.com', 'Dr. Amir', '0333-2622433', 'amir', 1, '2021-09-13 18:12:40'),
+(55, 3, 'mustafa', 'mustafa@mustafa.com', 'Dr. Ali Mustafa', '0347-1122171', 'mustafa', 1, '2021-09-13 18:13:18'),
+(56, 3, 'zaheer', 'zaheer@zaheer.com', 'Dr. Zaheer Mlaik', '0303-2748556', 'zaheer', 1, '2021-09-13 18:13:56'),
+(57, 3, 'arif', 'arif@arif.com', 'Dr. Arif Hussain', '0334-2086701', 'arif', 1, '2021-09-13 18:14:26'),
+(58, 3, 'nabi', 'nabi@nabi.com', 'Dr. Nabi Bux Lashari', '0345-2257102', 'nabi', 1, '2021-09-13 18:15:09'),
+(59, 3, 'iftekhar', 'iftekhar@iftekhar.com', 'Dr. Iftekhar', '0314-2460567', 'iftekhar', 1, '2021-09-13 18:15:43'),
+(60, 3, 'gohar', 'gohar@gohar.com', 'Dr. Gohar Ali', '0333-2624617', 'gohar', 1, '2021-09-13 18:16:15'),
+(61, 3, 'sajjad', 'sajjad@sajjad.com', 'Dr. Sajjad Ali', '0335-3584418', 'sajjad', 1, '2021-09-13 18:16:54'),
+(62, 3, 'karan', 'karan@karan.com', 'Dr. Karan Kumar', '0333-7594926', 'karan', 1, '2021-09-13 18:17:36'),
+(63, 3, 'muhammad', 'muhammad@muhammad.com', 'Dr. Muhammad Ali', '0333-2692711', 'muhammad', 1, '2021-09-13 18:18:16'),
+(64, 3, 'bilal', 'bilal@bilal.com', 'Dr. Bilal Khan', '0331-3508174', 'bilal', 1, '2021-09-13 18:18:47'),
+(65, 3, 'khuram', 'khuram@khuram.com', 'Dr. Khuram', '1312-4811179', 'khuram', 1, '2021-09-13 18:19:25'),
+(66, 3, 'jabbar', 'jabbar@jabbar.com', 'Dr. A. Jabbar', '0341-2701865', 'jabbar', 1, '2021-09-13 18:20:05'),
+(67, 3, 'asif', 'asif@asif.com', 'Dr, Asif Memon', '0333-2607464', 'asif', 1, '2021-09-13 18:20:58'),
+(68, 3, 'majid', 'majid@majid.com', 'Dr. Majid', '0345-0302355', 'majid', 1, '2021-09-13 18:21:31'),
+(69, 3, 'zaffar', 'zaffar@zaffar.com', 'Dr. Zaffar', '0300-3243739', 'zaffar', 1, '2021-09-13 18:22:00'),
+(70, 3, 'noshad', 'noshad@noshad.com', 'Dr. Noshad ', '0300-3443388', 'noshad', 1, '2021-09-13 18:22:32'),
+(71, 3, 'shamim', 'shamim@shamim.com', 'Dr. Shamim ', '0333-2653414', 'shamim', 1, '2021-09-13 18:23:13'),
+(72, 3, 'ghazanfar', 'ghazanfar@ghazanfar.com', 'Dr. Ghazanfar', '0331-3700973', 'ghazanfar', 1, '2021-09-13 18:23:50'),
+(73, 3, 'qazi', 'qazi@qazi.com', 'Mr. Qazi Faheem', '0333-2700766', 'qazi', 1, '2021-09-13 18:28:26'),
+(74, 3, 'jahanzaib', 'jahanzaib@jahanzaib.com', 'Dr. Jahanzaib', '0331-3671303', 'jahanzaib', 1, '2021-09-13 18:28:59'),
+(75, 3, 'jahanzaibnew', 'jahanzaibnew@jahanzaibnew.com', 'Dr. Jahanzaib', '0333-2738656', 'jahanzaibnew', 1, '2021-09-13 18:30:34'),
+(76, 3, 'zeeshan', 'zeeshan@zeeshan.com', 'Dr. Zeeshan', '0331-3514838', 'zeeshan', 1, '2021-09-13 18:31:07'),
+(77, 3, 'waqarsoomro', 'waqarsoomro@waqarsoomro.com', 'Dr. Waqar Soomro', '0331-2918188', 'waqarsoomro', 1, '2021-09-13 18:31:51'),
+(78, 3, 'parvaiz', 'parvaiz@parvaiz.com', 'Dr. Parvaiz', '0300-3039233', 'parvaiz', 1, '2021-09-13 18:32:46'),
+(79, 3, 'imad', 'imad@imad.com', 'Dr. Imad Ansari', '0332-2657850', 'imad', 1, '2021-09-13 18:34:14'),
+(80, 3, 'zafar', 'zafar@zafar.com', 'Dr. Zafar Memon', '0333-2610648', 'zafar', 1, '2021-09-13 18:35:00'),
+(81, 3, 'faique', 'faique@faique.com', 'Mr. Faique', '0302-3102681', 'faique', 1, '2021-09-13 18:37:15'),
+(82, 3, 'irfan', 'irfan@irfan.com', 'Dr. Irfan Ahmed', '0300-0356423', 'irfan', 1, '2021-09-13 18:37:47');
 
 -- --------------------------------------------------------
 
@@ -70,7 +123,7 @@ CREATE TABLE `admin_type` (
 
 INSERT INTO `admin_type` (`id`, `title`, `can_add`, `can_edit`, `can_delete`, `can_read`, `status`, `ts`) VALUES
 (1, 'Administrator', 1, 1, 1, 1, 1, '2017-02-27 12:10:38'),
-(3, 'Employee', 0, 0, 0, 1, 1, '2017-12-30 22:56:51');
+(3, 'UCMO', 1, 1, 1, 1, 1, '2021-09-13 17:45:08');
 
 -- --------------------------------------------------------
 
@@ -418,7 +471,7 @@ ALTER TABLE `uploads`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT for table `admin_type`
