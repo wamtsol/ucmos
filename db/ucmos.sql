@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 13, 2021 at 06:38 PM
+-- Generation Time: Sep 13, 2021 at 07:03 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.19
 
@@ -59,7 +59,7 @@ INSERT INTO `admin` (`id`, `admin_type_id`, `username`, `email`, `name`, `phone_
 (40, 3, 'rizwan', 'rizwan@rizwan.com', 'Dr. Rizwan', '0334-2824897', 'rizwan', 1, '2021-09-13 18:01:59'),
 (41, 3, 'basit', 'basit@basit.com', 'Dr. A. Basit', '0336-2256912', 'basit', 1, '2021-09-13 18:02:37'),
 (42, 3, 'riaz', 'riaz@riaz.com', 'Dr. Riaz', '0313-4938137', 'riaz', 1, '2021-09-13 18:03:17'),
-(43, 3, 'waseemnew', 'waseemnew@waseem.com', 'Dr. Waseem', '0334-3176941', 'waseemnew', 1, '2021-09-13 18:05:03'),
+(43, 3, 'waseemnew', 'waseemnew@waseem.com', 'Dr. Waseem New', '0334-3176941', 'waseemnew', 1, '2021-09-13 18:54:34'),
 (44, 3, 'faisalnew', 'faisalnew@faisal.com', 'Dr. Faisal Bilal', '0331-2395605', 'faisalnew', 1, '2021-09-13 18:05:57'),
 (45, 3, 'sikandar', 'sikandar@sikandar.com', 'Dr. Sikandar', '0333-2779010', 'sikandar', 1, '2021-09-13 18:06:40'),
 (46, 3, 'aliraza', 'aliraza@aliraza.com', 'Dr, Ali Raza Shah', '0334-3623032', 'aliraza', 1, '2021-09-13 18:07:23'),
@@ -91,7 +91,7 @@ INSERT INTO `admin` (`id`, `admin_type_id`, `username`, `email`, `name`, `phone_
 (72, 3, 'ghazanfar', 'ghazanfar@ghazanfar.com', 'Dr. Ghazanfar', '0331-3700973', 'ghazanfar', 1, '2021-09-13 18:23:50'),
 (73, 3, 'qazi', 'qazi@qazi.com', 'Mr. Qazi Faheem', '0333-2700766', 'qazi', 1, '2021-09-13 18:28:26'),
 (74, 3, 'jahanzaib', 'jahanzaib@jahanzaib.com', 'Dr. Jahanzaib', '0331-3671303', 'jahanzaib', 1, '2021-09-13 18:28:59'),
-(75, 3, 'jahanzaibnew', 'jahanzaibnew@jahanzaibnew.com', 'Dr. Jahanzaib', '0333-2738656', 'jahanzaibnew', 1, '2021-09-13 18:30:34'),
+(75, 3, 'jahanzaibnew', 'jahanzaibnew@jahanzaibnew.com', 'Dr. Jahanzaib New', '0333-2738656', 'jahanzaibnew', 1, '2021-09-13 18:57:33'),
 (76, 3, 'zeeshan', 'zeeshan@zeeshan.com', 'Dr. Zeeshan', '0331-3514838', 'zeeshan', 1, '2021-09-13 18:31:07'),
 (77, 3, 'waqarsoomro', 'waqarsoomro@waqarsoomro.com', 'Dr. Waqar Soomro', '0331-2918188', 'waqarsoomro', 1, '2021-09-13 18:31:51'),
 (78, 3, 'parvaiz', 'parvaiz@parvaiz.com', 'Dr. Parvaiz', '0300-3039233', 'parvaiz', 1, '2021-09-13 18:32:46'),
@@ -357,10 +357,10 @@ CREATE TABLE `tehseel` (
 --
 
 INSERT INTO `tehseel` (`id`, `name`, `status`, `ts`) VALUES
-(5, 'Latifabad', 1, '2021-09-13 17:03:07'),
-(6, 'Qasimabad', 1, '2021-09-13 17:03:20'),
-(7, 'Tando Jam', 1, '2021-09-13 17:03:36'),
-(8, 'Hyderabad City', 1, '2021-09-13 17:03:47');
+(9, 'HYDERABAD CITY', 1, '2021-09-13 18:58:18'),
+(10, 'HYDERABAD RURAL', 1, '2021-09-13 18:58:33'),
+(11, 'LATIFABAD', 1, '2021-09-13 18:58:48'),
+(12, 'QASIMABAD', 1, '2021-09-13 18:59:07');
 
 -- --------------------------------------------------------
 
@@ -383,8 +383,7 @@ CREATE TABLE `uc` (
 --
 
 INSERT INTO `uc` (`id`, `tehseel_id`, `name`, `admin_id`, `target`, `status`, `ts`) VALUES
-(4, 8, 'Ali', 28, 'qqqq', 1, '2021-09-13 17:30:52'),
-(5, 5, 'hassan', 1, 'zzzz', 1, '2021-09-13 17:31:05');
+(6, 9, 'HYDERABAD-1', 29, '5323', 1, '2021-09-13 19:01:30');
 
 -- --------------------------------------------------------
 
@@ -501,13 +500,13 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `tehseel`
 --
 ALTER TABLE `tehseel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `uc`
 --
 ALTER TABLE `uc`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `uploads`
