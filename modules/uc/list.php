@@ -15,6 +15,36 @@ if(!empty($q)){
 	$extra.=" and name like '%".$q."%'";
 	$is_search=true;
 }
+
+
+
+if(isset($_GET["tehseel_id"])){
+	$tehseel_id=slash($_GET["tehseel_id"]);
+	$_SESSION["tehseel"]["list"]["tehseel_id"]=$tehseel_id;
+}
+if(isset($_SESSION["tehseel"]["list"]["tehseel_id"]))
+	$tehseel_id=$_SESSION["tehseel"]["list"]["tehseel_id"];
+else
+	$tehseel_id="";
+if($tehseel_id!=""){
+	$extra.=" and tehseel_id='".$tehseel_id."'";
+	$is_search=true;
+}
+
+
+
+if(isset($_GET["admin_id"])){
+	$admin_id=slash($_GET["admin_id"]);
+	$_SESSION["tehseel"]["list"]["admin_id"]=$admin_id;
+}
+if(isset($_SESSION["tehseel"]["list"]["admin_id"]))
+	$admin_id=$_SESSION["tehseel"]["list"]["admin_id"];
+else
+	$admin_id="";
+if($admin_id!=""){
+	$extra.=" and admin_id='".$admin_id."'";
+	$is_search=true;
+}
 ?>
 <div class="page-header">
 	<h1 class="title"> UC</h1>
@@ -31,7 +61,37 @@ if(!empty($q)){
 	<li class="col-xs-12 col-lg-12 col-sm-12">
         <div>
         	<form class="form-horizontal" action="" method="get">
-                <div class="col-sm-10 col-xs-8">
+                <div class="col-sm-3 col-xs-2">
+                	<select name="tehseel_id" id="tehseel_id" class="custom_select">
+                        <option value=""<?php echo ($tehseel_id=="")? " selected":"";?>>Select Tehseel</option>
+                        <?php
+                            $res=doquery("select * from tehseel order by name ",$dblink);
+                            if(numrows($res)>=0){
+                                while($rec=dofetch($res)){
+                                ?>
+                                <option value="<?php echo $rec["id"]?>" <?php echo($tehseel_id==$rec["id"])?"selected":"";?>><?php echo unslash($rec["name"])?></option>
+                            <?php
+                                }
+                            }	
+                        ?>
+                    </select>
+                </div>
+                <div class="col-sm-3 col-xs-2">
+                	<select name="admin_id" id="admin_id" class="custom_select">
+                        <option value=""<?php echo ($admin_id=="")? " selected":"";?>>Select Admin</option>
+                        <?php
+                            $res=doquery("select * from admin order by name ",$dblink);
+                            if(numrows($res)>=0){
+                                while($rec=dofetch($res)){
+                                ?>
+                                <option value="<?php echo $rec["id"]?>" <?php echo($admin_id==$rec["id"])?"selected":"";?>><?php echo unslash($rec["name"])?></option>
+                            <?php
+                                }
+                            }	
+                        ?>
+                    </select>
+                </div>
+                <div class="col-sm-3 col-xs-2">
                   <input type="text" title="Enter String" value="<?php echo $q;?>" name="q" id="search" class="form-control" >  
                 </div>
                 <div class="col-sm-1 col-xs-2">
@@ -52,6 +112,7 @@ if(!empty($q)){
                 <th width="20%">Tehseel</th>
                 <th width="20%">Name</th>
                 <th width="20%">Admin</th>
+                <th width="20%">Target</th>
                 <th width="10%" class="text-center">Status</th>
                 <th width="5%">Actions</th>
             </tr>
@@ -74,6 +135,7 @@ if(!empty($q)){
                         <td><?php echo get_field($r["tehseel_id"], "tehseel", "name"); ?></td>
                         <td><?php echo unslash($r["name"]); ?></td>
                         <td><?php echo get_field($r["admin_id"], "admin", "name"); ?></td>
+                        <td><?php echo unslash($r["target"]); ?></td>
                         <td class="text-center"><a href="uc_manage.php?id=<?php echo $r['id'];?>&tab=status&s=<?php echo ($r["status"]==0)?1:0;?>">
                                 <?php
                                 if($r["status"]==0){
