@@ -5,25 +5,25 @@ $extra='';
 $is_search=false;
 if(isset($_GET["q"])){
 	$q=slash($_GET["q"]);
-	$_SESSION["tehseel_manage"]["q"]=$q;
+	$_SESSION["campaign_manage"]["q"]=$q;
 }
-if(isset($_SESSION["tehseel_manage"]["q"]))
-	$q=$_SESSION["tehseel_manage"]["q"];
+if(isset($_SESSION["campaign_manage"]["q"]))
+	$q=$_SESSION["campaign_manage"]["q"];
 else
 	$q="";
 if(!empty($q)){
-	$extra.=" and name like '%".$q."%'";
+	$extra.=" and total_days like '%".$q."%'";
 	$is_search=true;
 }
 ?>
 <div class="page-header">
-	<h1 class="title"> Tehseel</h1>
+	<h1 class="title"> Campaign</h1>
   	<ol class="breadcrumb">
-    	<li class="active">Manage Tehseel</li>
+    	<li class="active">Manage Campaign</li>
   	</ol>
   	<div class="right">
     	<div class="btn-group" role="group" aria-label="..."> 
-        	<a href="tehseel_manage.php?tab=add" class="btn btn-light editproject">Add New Tehseel</a> <a id="topstats" class="btn btn-light" href="#"><i class="fa fa-search"></i></a>
+        	<a href="campaign_manage.php?tab=add" class="btn btn-light editproject">Add New Campaign</a> <a id="topstats" class="btn btn-light" href="#"><i class="fa fa-search"></i></a>
         </div>
   	</div>
 </div>
@@ -49,18 +49,17 @@ if(!empty($q)){
                 <th class="text-center" width="5%"><div class="checkbox checkbox-primary">
                     <input type="checkbox" id="select_all" value="0" title="Select All Records">
                     <label for="select_all"></label></div></th>
-                <th width="60%">Name</th>
-                <th width="10%" class="text-center">Status</th>
-                <th width="5%">Actions</th>
+                <th>Start Date</th>
+                <th width="20%" class="text-right">Total Days</th>
+                <th width="10%" class="text-right">Actions</th>
             </tr>
     	</thead>
     	<tbody>
 			<?php 
-            $sql="select * from tehseel where 1 $extra";
+            $sql="select * from campaign where 1 $extra";
             $rs=show_page($rows, $pageNum, $sql);
             if(numrows($rs)>0){
                 $sn=1;
-				$total = 0;
                 while($r=dofetch($rs)){             
                     ?>
                     <tr>
@@ -69,24 +68,11 @@ if(!empty($q)){
                             <input type="checkbox" name="id[]" id="<?php echo "rec_".$sn?>"  value="<?php echo $r["id"]?>" title="Select Record" />
                             <label for="<?php echo "rec_".$sn?>"></label></div>
                         </td>
-                        <td><?php echo unslash($r["name"]); ?></td>
-                        <td class="text-center"><a href="tehseel_manage.php?id=<?php echo $r['id'];?>&tab=status&s=<?php echo ($r["status"]==0)?1:0;?>">
-                            <?php
-                            if($r["status"]==0){
-                                ?>
-                                <img src="images/offstatus.png" alt="Off" title="Set Status On">
-                                <?php
-                            }
-                            else{
-                                ?>
-                                <img src="images/onstatus.png" alt="On" title="Set Status Off">
-                                <?php
-                            }
-                            ?>
-                        </a></td>
-                        <td>
-                            <a href="tehseel_manage.php?tab=edit&id=<?php echo $r['id'];?>"><img title="Edit Record" alt="Edit" src="images/edit.png"></a>&nbsp;&nbsp;
-                            <a onclick="return confirm('Are you sure you want to delete')" href="tehseel_manage.php?id=<?php echo $r['id'];?>&amp;tab=delete"><img title="Delete Record" alt="Delete" src="images/delete.png"></a>
+                        <td><?php echo date_convert($r["start_date"]); ?></td>
+                        <td class="text-right"><?php echo unslash($r["total_days"]); ?></td>
+                        <td class="text-right">
+                            <a href="campaign_manage.php?tab=edit&id=<?php echo $r['id'];?>"><img title="Edit Record" alt="Edit" src="images/edit.png"></a>&nbsp;&nbsp;
+                            <a onclick="return confirm('Are you sure you want to delete')" href="campaign_manage.php?id=<?php echo $r['id'];?>&amp;tab=delete"><img title="Delete Record" alt="Delete" src="images/delete.png"></a>
                         </td>
                     </tr>
                     <?php 
@@ -98,19 +84,17 @@ if(!empty($q)){
                         <select name="bulk_action" id="bulk_action" title="Choose Action">
                             <option value="null">Bulk Action</option>
                             <option value="delete">Delete</option>
-                            <option value="statuson">Set Status On</option>
-                            <option value="statusof">Set Status Off</option>
                         </select>
                         <input type="button" name="apply" value="Apply" id="apply_bulk_action" class="btn btn-light" title="Apply Action"  />
                     </td>
-                    <td colspan="3" class="paging" title="Paging" align="right"><?php echo pages_list($rows, "tehseel", $sql, $pageNum)?></td>
+                    <td colspan="2" class="paging" title="Paging" align="right"><?php echo pages_list($rows, "campaign", $sql, $pageNum)?></td>
                 </tr>
                 <?php	
             }
             else{	
                 ?>
                 <tr>
-                    <td colspan="8"  class="no-record">No Result Found</td>
+                    <td colspan="5"  class="no-record">No Result Found</td>
                 </tr>
                 <?php
             }

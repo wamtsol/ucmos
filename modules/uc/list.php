@@ -15,30 +15,24 @@ if(!empty($q)){
 	$extra.=" and name like '%".$q."%'";
 	$is_search=true;
 }
-
-
-
 if(isset($_GET["tehseel_id"])){
 	$tehseel_id=slash($_GET["tehseel_id"]);
-	$_SESSION["tehseel"]["list"]["tehseel_id"]=$tehseel_id;
+	$_SESSION["uc_manage"]["tehseel_id"]=$tehseel_id;
 }
-if(isset($_SESSION["tehseel"]["list"]["tehseel_id"]))
-	$tehseel_id=$_SESSION["tehseel"]["list"]["tehseel_id"];
+if(isset($_SESSION["uc_manage"]["tehseel_id"]))
+	$tehseel_id=$_SESSION["uc_manage"]["tehseel_id"];
 else
 	$tehseel_id="";
 if($tehseel_id!=""){
 	$extra.=" and tehseel_id='".$tehseel_id."'";
 	$is_search=true;
 }
-
-
-
 if(isset($_GET["admin_id"])){
 	$admin_id=slash($_GET["admin_id"]);
-	$_SESSION["tehseel"]["list"]["admin_id"]=$admin_id;
+	$_SESSION["uc_manage"]["admin_id"]=$admin_id;
 }
-if(isset($_SESSION["tehseel"]["list"]["admin_id"]))
-	$admin_id=$_SESSION["tehseel"]["list"]["admin_id"];
+if(isset($_SESSION["uc_manage"]["admin_id"]))
+	$admin_id=$_SESSION["uc_manage"]["admin_id"];
 else
 	$admin_id="";
 if($admin_id!=""){
@@ -62,7 +56,7 @@ if($admin_id!=""){
         <div>
         	<form class="form-horizontal" action="" method="get">
                 <div class="col-sm-3 col-xs-2">
-                	<select name="tehseel_id" id="tehseel_id" class="custom_select">
+                	<select name="tehseel_id" id="tehseel_id" class="custom_select select_multiple">
                         <option value=""<?php echo ($tehseel_id=="")? " selected":"";?>>Select Tehseel</option>
                         <?php
                             $res=doquery("select * from tehseel order by name ",$dblink);
@@ -77,7 +71,7 @@ if($admin_id!=""){
                     </select>
                 </div>
                 <div class="col-sm-3 col-xs-2">
-                	<select name="admin_id" id="admin_id" class="custom_select">
+                	<select name="admin_id" id="admin_id" class="custom_select select_multiple">
                         <option value=""<?php echo ($admin_id=="")? " selected":"";?>>Select Admin</option>
                         <?php
                             $res=doquery("select * from admin order by name ",$dblink);
@@ -169,7 +163,7 @@ if($admin_id!=""){
                         </select>
                         <input type="button" name="apply" value="Apply" id="apply_bulk_action" class="btn btn-light" title="Apply Action"  />
                     </td>
-                    <td colspan="3" class="paging" title="Paging" align="right"><?php echo pages_list($rows, "admin", $sql, $pageNum)?></td>
+                    <td colspan="3" class="paging" title="Paging" align="right"><?php echo pages_list($rows, "uc", $sql, $pageNum)?></td>
                 </tr>
                 <?php	
             }
