@@ -73,7 +73,15 @@ $(document).ready(function() {
 		$form.find('input[type=text], select, textarea').val('');
 		$form.submit();
 	});
+	// $('#campaign_id').change(function(){
+	// 	alert($(this).data('id'));
+	// });
 }); 
+
+function totalDays() {
+	var totaldays = $('#campaign_id').find(':selected').data('id');
+    //alert(totaldays);
+}
 </script>
 
 </body>

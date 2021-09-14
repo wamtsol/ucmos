@@ -63,7 +63,7 @@ if($admin_id!=""){
                             if(numrows($res)>=0){
                                 while($rec=dofetch($res)){
                                 ?>
-                                <option value="<?php echo $rec["id"]?>" <?php echo($tehseel_id==$rec["id"])?"selected":"";?>><?php echo unslash($rec["name"])?></option>
+                                <option value="<?php echo $rec["id"]?>"<?php echo($tehseel_id==$rec["id"])?"selected":"";?>><?php echo unslash($rec["name"])?></option>
                             <?php
                                 }
                             }	

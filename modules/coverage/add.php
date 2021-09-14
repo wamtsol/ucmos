@@ -26,14 +26,14 @@ else{
                 <label class="form-label" for="campaign_id">Campaign <span class="red">*</span></label>
             </div>
             <div class="col-sm-10">
-                <select name="campaign_id" title="Choose Option" class="select_multiple">
+                <select name="campaign_id" id="campaign_id" onchange="totalDays()" title="Choose Option" class="select_multiple">
                     <option value="0">Select Campaign</option>
                     <?php
                     $res=doquery("Select * from campaign order by start_date desc",$dblink);
                     if(numrows($res)>0){
                         while($rec=dofetch($res)){
                             ?>
-                            <option value="<?php echo $rec["id"]?>"<?php echo($campaign_id==$rec["id"])?"selected":"";?>><?php echo date_convert($rec["start_date"]); ?></option>
+                            <option value="<?php echo $rec["id"]?>"  data-id="<?php echo $rec["total_days"]?>" <?php echo($campaign_id==$rec["id"])?"selected":"";?>><?php echo date_convert($rec["start_date"]); ?></option>
                             <?php
                         }
                     }
