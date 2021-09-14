@@ -63,7 +63,14 @@ if(!defined("APP_START")) die("No Direct Access");
             	<label class="form-label" for="day_number">Day Number</label>
             </div>
             <div class="col-sm-10">
-                <input type="text" title="Enter Day Number" value="<?php echo $day_number; ?>" name="day_number" id="day_number" class="form-control" >
+				<select name="day_number" title="Choose Option">
+					<option value="1"<?php echo ($day_number=="1")? " selected":"";?>>Day 1</option>
+                    <option value="2"<?php echo ($day_number=="2")? " selected":"";?>>Day 2</option>
+					<option value="3"<?php echo ($day_number=="3")? " selected":"";?>>Day 3</option>
+					<option value="4"<?php echo ($day_number=="4")? " selected":"";?>>Day 4</option>
+					<option value="5"<?php echo ($day_number=="5")? " selected":"";?>>Day 5</option>
+					<option value="0"<?php echo ($day_number=="0")? " selected":"";?>>Extended Coverage Day</option>
+                </select>
             </div>
         </div>
   	</div>

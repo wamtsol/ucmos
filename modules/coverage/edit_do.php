@@ -8,7 +8,7 @@ if(isset($_POST["coverage_edit"])){
 	if(numrows(doquery("select id from coverage where campaign_id='".$campaign_id."' and uc_id='".$uc_id."' and day_number='".$day_number."' and id<>'".$id."'", $dblink))>0)
 		$err.='Record already exists.<br />';
 	if($err==""){
-        $sql="Update coverage set `campaign_id`='".slash($campaign_id)."', `uc_id`='".slash($uc_id)."', `day_number`='".slash($day_number)."', `total_vaccinated`='".slash($total_vaccinated)."', `user_if`='".slash($user_if)."'"." where id='".$id."'";
+        $sql="Update coverage set `campaign_id`='".slash($campaign_id)."', `uc_id`='".slash($uc_id)."', `day_number`='".slash($day_number)."', `total_vaccinated`='".slash($total_vaccinated)."'"." where id='".$id."'";
 		doquery($sql,$dblink);
 		unset($_SESSION["coverage_manage"]["edit"]);
 		header('Location: coverage_manage.php?tab=list&msg='.url_encode("Successfully Updated"));

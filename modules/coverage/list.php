@@ -88,7 +88,8 @@ if($uc_id!=""){
                 <div class="col-sm-2 col-xs-8">
                   <input type="text" title="Enter String" value="<?php echo $q;?>" name="q" id="search" class="form-control" >  
                 </div>
-                <div class="col-sm-1 col-xs-2">
+                <div class="col-sm-2 col-xs-2">
+                    <input type="button" class="btn btn-danger btn-l reset_search" value="Reset" alt="Reset Record" title="Reset Record" />
                     <input type="submit" class="btn btn-default btn-l" value="Search" alt="Search Record" title="Search Record" />
                 </div>
           	</form>
@@ -107,6 +108,7 @@ if($uc_id!=""){
                 <th width="15%">UC</th>
                 <th width="10%" class="text-right">Day Number</th>
                 <th width="15%" class="text-right">Total Vaccinated</th>
+                <th width="10%">User</th>
                 <th class="text-center" width="5%">Status</th>
                 <th width="5%" class="text-right">Actions</th>
             </tr>
@@ -129,6 +131,7 @@ if($uc_id!=""){
                         <td><?php echo get_field($r["uc_id"], "uc", "name"); ?></td>
                         <td class="text-right"><?php echo unslash($r["day_number"]); ?></td>
                         <td class="text-right"><?php echo unslash($r["total_vaccinated"]); ?></td>
+                        <td><?php echo get_field($r["user_id"], "admin", "name"); ?></td>
                         <td class="text-center"><a href="coverage_manage.php?id=<?php echo $r['id'];?>&tab=status&s=<?php echo ($r["status"]==0)?1:0;?>">
                             <?php
                             if($r["status"]==0){
@@ -160,14 +163,14 @@ if($uc_id!=""){
                         </select>
                         <input type="button" name="apply" value="Apply" id="apply_bulk_action" class="btn btn-light" title="Apply Action"  />
                     </td>
-                    <td colspan="3" class="paging" title="Paging" align="right"><?php echo pages_list($rows, "coverage", $sql, $pageNum)?></td>
+                    <td colspan="4" class="paging" title="Paging" align="right"><?php echo pages_list($rows, "coverage", $sql, $pageNum)?></td>
                 </tr>
                 <?php	
             }
             else{	
                 ?>
                 <tr>
-                    <td colspan="8"  class="no-record">No Result Found</td>
+                    <td colspan="9"  class="no-record">No Result Found</td>
                 </tr>
                 <?php
             }
