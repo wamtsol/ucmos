@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Sep 14, 2021 at 10:45 AM
--- Server version: 5.7.24
--- PHP Version: 7.4.19
+-- Host: 127.0.0.1
+-- Generation Time: Sep 14, 2021 at 06:23 PM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -35,8 +36,8 @@ CREATE TABLE `admin` (
   `name` varchar(200) NOT NULL,
   `phone_number` varchar(220) NOT NULL,
   `password` varchar(200) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '1',
-  `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `status` int(11) NOT NULL DEFAULT 1,
+  `ts` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -109,12 +110,12 @@ INSERT INTO `admin` (`id`, `admin_type_id`, `username`, `email`, `name`, `phone_
 CREATE TABLE `admin_type` (
   `id` int(11) NOT NULL,
   `title` varchar(200) NOT NULL,
-  `can_add` int(1) NOT NULL DEFAULT '0',
-  `can_edit` int(1) NOT NULL DEFAULT '0',
-  `can_delete` int(1) NOT NULL DEFAULT '0',
-  `can_read` int(1) NOT NULL DEFAULT '0',
-  `status` int(1) NOT NULL DEFAULT '1',
-  `ts` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `can_add` int(1) NOT NULL DEFAULT 0,
+  `can_edit` int(1) NOT NULL DEFAULT 0,
+  `can_delete` int(1) NOT NULL DEFAULT 0,
+  `can_read` int(1) NOT NULL DEFAULT 0,
+  `status` int(1) NOT NULL DEFAULT 1,
+  `ts` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -124,6 +125,26 @@ CREATE TABLE `admin_type` (
 INSERT INTO `admin_type` (`id`, `title`, `can_add`, `can_edit`, `can_delete`, `can_read`, `status`, `ts`) VALUES
 (1, 'Administrator', 1, 1, 1, 1, 1, '2017-02-27 12:10:38'),
 (3, 'UCMO', 1, 1, 1, 1, 1, '2021-09-13 17:45:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `campaign`
+--
+
+CREATE TABLE `campaign` (
+  `id` int(11) NOT NULL,
+  `start_date` date NOT NULL,
+  `total_days` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `campaign`
+--
+
+INSERT INTO `campaign` (`id`, `start_date`, `total_days`) VALUES
+(1, '2021-09-14', 5),
+(2, '2021-09-13', 4);
 
 -- --------------------------------------------------------
 
@@ -181,6 +202,31 @@ INSERT INTO `config_variable` (`id`, `config_type_id`, `title`, `notes`, `type`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `coverage`
+--
+
+CREATE TABLE `coverage` (
+  `id` int(11) NOT NULL,
+  `campaign_id` int(11) NOT NULL,
+  `uc_id` int(11) NOT NULL,
+  `day_number` int(11) NOT NULL,
+  `total_vaccinated` int(11) NOT NULL,
+  `user_if` int(1) NOT NULL,
+  `status` int(1) NOT NULL DEFAULT 1,
+  `ts` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `coverage`
+--
+
+INSERT INTO `coverage` (`id`, `campaign_id`, `uc_id`, `day_number`, `total_vaccinated`, `user_if`, `status`, `ts`) VALUES
+(1, 1, 54, 5, 1234, 0, 1, '2021-09-14 16:20:40'),
+(2, 1, 54, 4, 33, 0, 1, '2021-09-14 16:21:45');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `menu`
 --
 
@@ -206,7 +252,9 @@ INSERT INTO `menu` (`id`, `title`, `url`, `parent_id`, `depth`, `sortorder`, `ic
 (12, 'Upload Center', 'upload_manage.php', 1, 1, 3, 'upload-center.png', 'file-o'),
 (26, 'Manage User Types', 'admin_type_manage.php', 1, 1, 5, 'admin-type.png', 'unlock-alt'),
 (87, 'Manage Tehseel', 'tehseel_manage.php', 1, 1, 6, 'admin-type.png', 'unlock-alt'),
-(88, 'Manage UC', 'uc_manage.php', 1, 1, 7, 'admin-type.png', 'unlock-alt');
+(88, 'Manage UC', 'uc_manage.php', 1, 1, 7, 'admin-type.png', 'unlock-alt'),
+(89, 'Campaign', 'campaign_manage.php', 1, 1, 7, 'admin-type.png', 'unlock-alt'),
+(90, 'Coverage', 'coverage_manage.php', 1, 1, 7, 'admin-type.png', 'unlock-alt');
 
 -- --------------------------------------------------------
 
@@ -337,7 +385,9 @@ INSERT INTO `menu_2_admin_type` (`menu_id`, `admin_type_id`) VALUES
 (85, 1),
 (86, 1),
 (87, 1),
-(88, 1);
+(88, 1),
+(89, 1),
+(90, 1);
 
 -- --------------------------------------------------------
 
@@ -348,8 +398,8 @@ INSERT INTO `menu_2_admin_type` (`menu_id`, `admin_type_id`) VALUES
 CREATE TABLE `tehseel` (
   `id` int(11) NOT NULL,
   `name` varchar(220) NOT NULL,
-  `status` int(1) NOT NULL DEFAULT '1',
-  `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `status` int(1) NOT NULL DEFAULT 1,
+  `ts` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -374,8 +424,8 @@ CREATE TABLE `uc` (
   `name` varchar(220) NOT NULL,
   `admin_id` int(11) NOT NULL,
   `target` varchar(220) NOT NULL,
-  `status` int(1) NOT NULL DEFAULT '1',
-  `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `status` int(1) NOT NULL DEFAULT 1,
+  `ts` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -474,6 +524,12 @@ ALTER TABLE `admin_type`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `campaign`
+--
+ALTER TABLE `campaign`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `config_type`
 --
 ALTER TABLE `config_type`
@@ -483,6 +539,12 @@ ALTER TABLE `config_type`
 -- Indexes for table `config_variable`
 --
 ALTER TABLE `config_variable`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `coverage`
+--
+ALTER TABLE `coverage`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -532,6 +594,12 @@ ALTER TABLE `admin_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `campaign`
+--
+ALTER TABLE `campaign`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `config_type`
 --
 ALTER TABLE `config_type`
@@ -544,10 +612,16 @@ ALTER TABLE `config_variable`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
+-- AUTO_INCREMENT for table `coverage`
+--
+ALTER TABLE `coverage`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `tehseel`
