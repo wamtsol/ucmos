@@ -10,6 +10,7 @@ else{
 	$email="";
 	$password="";
     $phone_number="";
+    $uc_ids=array();
 }
 ?>
 <div class="page-header">
@@ -22,9 +23,6 @@ else{
   	</div>
 </div>
 <form action="admin_manage.php?tab=add" method="post" enctype="multipart/form-data" name="frmAdd"  onSubmit="return checkFields();" class="form-horizontal form-horizontal-left">
-	<?php
-    	$i=0;
-  	?>
     <div class="form-group">
         <div class="row">
             <div class="col-sm-2 control-label">
@@ -37,9 +35,9 @@ else{
                     $res=doquery("Select * from admin_type order by title",$dblink);
                     if(numrows($res)>0){
                         while($rec=dofetch($res)){
-                        ?>
-                        <option value="<?php echo $rec["id"]?>"<?php echo($admin_type_id==$rec["id"])?"selected":"";?>><?php echo unslash($rec["title"]); ?></option>
-                     <?php			
+                            ?>
+                            <option value="<?php echo $rec["id"]?>"<?php echo($admin_type_id==$rec["id"])?"selected":"";?>><?php echo unslash($rec["title"]); ?></option>
+                            <?php			
                         }			
                     }
                     ?>
@@ -97,6 +95,28 @@ else{
             </div>
         </div>
   	</div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-2 control-label no-padding-right">
+                <label class="form-label" for="uc_id">UC </label>
+            </div>
+            <div class="col-sm-10">
+                <select name="uc_ids[]" title="Choose Option" multiple="multiple" class="select_multiple">
+                    <option value="0">Select UC</option>
+                    <?php
+                    $res=doquery("Select * from uc order by name",$dblink);
+                    if(numrows($res)>0){
+                        while($rec=dofetch($res)){
+                            ?>
+                            <option value="<?php echo $rec["id"]?>"<?php echo in_array($rec["id"], $uc_ids)?"selected":"";?>><?php echo unslash($rec["name"]); ?></option>
+                            <?php			
+                        }			
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
+    </div>
   	<div class="form-group">
     	<div class="row">
         	<div class="col-sm-2 control-label">

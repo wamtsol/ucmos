@@ -14,8 +14,12 @@ if(isset($_POST["admin_add"])){
 	if($err==""){
 		$sql="INSERT INTO admin (admin_type_id, username, name, email, phone_number, password) VALUES ('".slash($admin_type_id)."', '".slash($username)."','".slash($name)."','".slash($email)."','".slash($phone_number)."','".slash($password)."')";
 		doquery($sql,$dblink);
+		$id=inserted_id();
+		foreach($uc_ids as $uc_id){
+			doquery( "insert into admin_2_uc values('".$id."', '".$uc_id."')", $dblink );
+		}
 		unset($_SESSION["admin_manage"]["add"]);
-		header('Location: admin_manage.php?tab=list&msg='.url_encode("Sucessfully Added"));
+		header('Location: admin_manage.php?tab=list&msg='.url_encode("Successfully Added"));
 		die;
 	}
 	else{
