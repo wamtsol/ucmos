@@ -4,8 +4,8 @@ if(isset($_SESSION["coverage_manage"]["add"])){
 	extract($_SESSION["coverage_manage"]["add"]);
 }
 else{
-	$campaign_id="";
-	$uc_id="";
+	$campaign_id=$_SESSION["coverage_manage"]["campaign_id"]?$_SESSION["coverage_manage"]["campaign_id"]:"";
+	$uc_id=$ucid["id"]?$ucid["id"]:"";
 	$day_number="";
 	$total_vaccinated="";
 }
@@ -42,6 +42,7 @@ else{
             </div>
         </div>
     </div>
+    <?php if($_SESSION["logged_in_admin"]["admin_type_id"]==1){?>
 	<div class="form-group">
         <div class="row">
             <div class="col-sm-2 control-label">
@@ -64,6 +65,7 @@ else{
             </div>
         </div>
     </div>
+    <?php }?>
 	<div class="form-group">
     	<div class="row">
         	<div class="col-sm-2 control-label">

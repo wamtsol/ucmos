@@ -34,14 +34,14 @@ if(isset($_GET["uc_id"])){
 if(isset($_SESSION["coverage_manage"]["uc_id"]))
 	$uc_id=$_SESSION["coverage_manage"]["uc_id"];
 else
-	$uc_id="";
+    $uc_id = $ucid["id"]?$ucid["id"]:"";
 if($uc_id!=""){
 	$extra.=" and uc_id='".$uc_id."'";
 	$is_search=true;
 }
 ?>
 <div class="page-header">
-	<h1 class="title"> Coverage</h1>
+	<h1 class="title"> Coverage </h1>
   	<ol class="breadcrumb">
     	<li class="active">Manage Coverage</li>
   	</ol>
@@ -70,6 +70,7 @@ if($uc_id!=""){
                         ?>
                     </select>
                 </div>
+                <?php if($_SESSION["logged_in_admin"]["admin_type_id"]==1){?>
                 <div class="col-sm-2 col-xs-2">
                 	<select name="uc_id" id="uc_id" class="custom_select select_multiple">
                         <option value=""<?php echo ($uc_id=="")? " selected":"";?>>Select UC</option>
@@ -85,6 +86,7 @@ if($uc_id!=""){
                         ?>
                     </select>
                 </div>
+                <?php }?>
                 <div class="col-sm-2 col-xs-8">
                   <input type="text" title="Enter String" value="<?php echo $q;?>" name="q" id="search" class="form-control" >  
                 </div>
@@ -105,7 +107,9 @@ if($uc_id!=""){
                     <input type="checkbox" id="select_all" value="0" title="Select All Records">
                     <label for="select_all"></label></div></th>
                 <th width="15%">Campaign</th>
+                <?php if($_SESSION["logged_in_admin"]["admin_type_id"]==1){?>
                 <th width="15%">UC</th>
+                <?php }?>
                 <th width="10%" class="text-right">Day Number</th>
                 <th width="15%" class="text-right">Total Vaccinated</th>
                 <th width="10%">User</th>
@@ -128,7 +132,9 @@ if($uc_id!=""){
                             <label for="<?php echo "rec_".$sn?>"></label></div>
                         </td>
                         <td><?php echo date_convert($r["start_date"]); ?></td>
+                        <?php if($_SESSION["logged_in_admin"]["admin_type_id"]==1){?>
                         <td><?php echo get_field($r["uc_id"], "uc", "name"); ?></td>
+                        <?php }?>
                         <td class="text-right"><?php echo unslash($r["day_number"]); ?></td>
                         <td class="text-right"><?php echo unslash($r["total_vaccinated"]); ?></td>
                         <td><?php echo get_field($r["user_id"], "admin", "name"); ?></td>

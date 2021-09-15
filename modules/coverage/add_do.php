@@ -8,7 +8,7 @@ if(isset($_POST["coverage_add"])){
 	if(numrows(doquery("select id from coverage where campaign_id='".$campaign_id."' and uc_id='".$uc_id."' and day_number='".$day_number."'", $dblink))>0)
 		$err.='Record already exists.<br />';
 	if($err==""){
-		$sql="INSERT INTO coverage (campaign_id, uc_id, day_number, total_vaccinated, user_id) VALUES ('".slash($campaign_id)."', '".slash($uc_id)."', '".slash($day_number)."', '".slash($total_vaccinated)."', '".$_SESSION["logged_in_admin"]["id"]."')";
+		$sql="INSERT INTO coverage (campaign_id, uc_id, day_number, total_vaccinated, user_id) VALUES ('".slash($campaign_id)."', '".$_SESSION["logged_in_admin"]["admin_type_id"]==1?slash($uc_id):slash($ucid)."', '".slash($day_number)."', '".slash($total_vaccinated)."', '".$_SESSION["logged_in_admin"]["id"]."')";
 		doquery($sql,$dblink);
 		unset($_SESSION["coverage_manage"]["add"]);
 		header('Location: coverage_manage.php?tab=list&msg='.url_encode("Successfully Added"));

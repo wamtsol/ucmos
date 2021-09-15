@@ -13,6 +13,7 @@ if(isset($_REQUEST["tab"]) && in_array($_REQUEST["tab"], $tab_array)){
 else{
 	$tab="list";
 }
+$ucid = dofetch(doquery("select id from uc where admin_id = '".$_SESSION["logged_in_admin"]["id"]."'",$dblink));
 
 switch($tab){
 	case 'add':

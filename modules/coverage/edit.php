@@ -35,6 +35,7 @@ if(!defined("APP_START")) die("No Direct Access");
             </div>
         </div>
     </div>
+    <?php if($_SESSION["logged_in_admin"]["admin_type_id"]==1){?>
 	<div class="form-group">
         <div class="row">
             <div class="col-sm-2 control-label">
@@ -57,6 +58,7 @@ if(!defined("APP_START")) die("No Direct Access");
             </div>
         </div>
     </div>
+    <?php }?>
 	<div class="form-group">
     	<div class="row">
         	<div class="col-sm-2 control-label">
