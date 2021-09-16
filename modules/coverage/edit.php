@@ -12,7 +12,9 @@ if(!defined("APP_START")) die("No Direct Access");
 </div>
 <form action="coverage_manage.php?tab=edit" method="post" enctype="multipart/form-data" name="frmAdd"  class="form-horizontal form-horizontal-left">
 	<input type="hidden" name="id" value="<?php echo $id;?>">
-
+    <?php if(!empty($uc_id)){?>
+    <input type="hidden" name="uc_id" value="<?php echo $uc_id?>" />
+    <?php }?>
 	<div class="form-group">
         <div class="row">
             <div class="col-sm-2 control-label">

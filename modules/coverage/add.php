@@ -4,11 +4,12 @@ if(isset($_SESSION["coverage_manage"]["add"])){
 	extract($_SESSION["coverage_manage"]["add"]);
 }
 else{
-	$campaign_id=$_SESSION["coverage_manage"]["campaign_id"]?$_SESSION["coverage_manage"]["campaign_id"]:"";
-	$uc_id=$ucid["id"]?$ucid["id"]:"";
+	$campaign_id=isset($_SESSION["coverage_manage"]["campaign_id"])?$_SESSION["coverage_manage"]["campaign_id"]:"";
+	$uc_id=$_SESSION["logged_in_admin"]["admin_type_id"]==1?"":$ucid["id"];
 	$day_number="";
 	$total_vaccinated="";
 }
+//echo $uc_id;
 ?>
 <div class="page-header">
 	<h1 class="title">Add New Coverage</h1>
@@ -20,7 +21,10 @@ else{
   	</div>
 </div>
 <form action="coverage_manage.php?tab=add" method="post" enctype="multipart/form-data" name="frmAdd"  onSubmit="return checkFields();" class="form-horizontal form-horizontal-left">
-	<div class="form-group">
+	<?php if(!empty($uc_id)){?>
+    <input type="hidden" name="uc_id" value="<?php echo $uc_id?>" />
+    <?php }?>
+    <div class="form-group">
         <div class="row">
             <div class="col-sm-2 control-label">
                 <label class="form-label" for="campaign_id">Campaign <span class="red">*</span></label>

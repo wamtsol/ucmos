@@ -112,7 +112,9 @@ if($uc_id!=""){
                 <?php }?>
                 <th width="10%" class="text-right">Day Number</th>
                 <th width="15%" class="text-right">Total Vaccinated</th>
+                <?php if($_SESSION["logged_in_admin"]["admin_type_id"]==1){?>
                 <th width="10%">User</th>
+                <?php }?>
                 <th class="text-center" width="5%">Status</th>
                 <th width="5%" class="text-right">Actions</th>
             </tr>
@@ -135,9 +137,11 @@ if($uc_id!=""){
                         <?php if($_SESSION["logged_in_admin"]["admin_type_id"]==1){?>
                         <td><?php echo get_field($r["uc_id"], "uc", "name"); ?></td>
                         <?php }?>
-                        <td class="text-right"><?php echo unslash($r["day_number"]); ?></td>
+                        <td class="text-right"><?php echo $r["day_number"]==0?"Extended Coverage Day":"Day ".unslash($r["day_number"]); ?></td>
                         <td class="text-right"><?php echo unslash($r["total_vaccinated"]); ?></td>
+                        <?php if($_SESSION["logged_in_admin"]["admin_type_id"]==1){?>
                         <td><?php echo get_field($r["user_id"], "admin", "name"); ?></td>
+                        <?php }?>
                         <td class="text-center"><a href="coverage_manage.php?id=<?php echo $r['id'];?>&tab=status&s=<?php echo ($r["status"]==0)?1:0;?>">
                             <?php
                             if($r["status"]==0){
